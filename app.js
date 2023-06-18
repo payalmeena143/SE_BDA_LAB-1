@@ -3,10 +3,11 @@ var express = require('express');
 var path = require('path');
 var cookieParser = require('cookie-parser');
 var logger = require('morgan');
-var mongoose= require('mongoose');
+var mongoose= require('mongoose'); //mongodb
 var bodyParser=require('body-parser');
 var session=require('express-session');
 mongoose.connect("mongodb://127.0.0.1:27017/bda");
+// mongoose.connect(process.env.MONGO_URI);
 
 require('dotenv/config');
 var indexRouter = require('./routes/index');
@@ -43,5 +44,15 @@ app.use(function(err, req, res, next) {
   res.status(err.status || 500);
   res.render('error');
 });
+//   mongoose.connect(DB_URI, {useNewUrlParser:true, useUnifiedTopology:true} {
+//   .then( () => {
+//    console.log('DB Connected');
+//   })
+//    .catch( (err) => {
+//   console.log(err);
+// });
+
+
+  
 
 module.exports = app;
